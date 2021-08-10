@@ -1,0 +1,38 @@
+{
+  "publisher": {
+    "url": "localhost",
+    "name": "user",
+    "exchange_type": "topic",
+    "delivery_mode": 2,
+    "durable": true
+  },
+  "consumer": [
+    {
+      "url": "localhost",
+      "exchange_name": "user",
+      "exchange_type": "topic",
+      "routing_key": "#.created",
+      "queue_name": "email.user",
+      "durable": true,
+      "arguments": {}
+    },
+    {
+      "url": "localhost",
+      "exchange_name": "user",
+      "exchange_type": "topic",
+      "routing_key": "#.deleted",
+      "queue_name": "email.user",
+      "durable": true,
+      "arguments": {}
+    },
+    {
+      "url": "localhost",
+      "exchange_name": "user",
+      "exchange_type": "topic",
+      "routing_key": "#.created",
+      "queue_name": "membership.user",
+      "durable": true,
+      "arguments": {}
+    }
+  ]
+}

@@ -1,0 +1,109 @@
+{
+    "rabbit_version": "3.8.3",
+    "rabbitmq_version": "3.8.3",
+    "users": [
+        
+    ],
+    "vhosts": [{ "name": "/" }],
+    "permissions": [
+      {
+        "user": "admin",
+        "vhost": "/",
+        "configure": ".*",
+        "write": ".*",
+        "read": ".*"
+      }
+    ],
+    "exchanges": [
+      {
+        "name": "user",
+        "vhost": "/",
+        "type": "topic",
+        "durable": true,
+        "auto_delete": false,
+        "internal": false,
+        "arguments": {}
+      },
+      {
+        "name": "retry.user.in",
+        "vhost": "/",
+        "type": "topic",
+        "durable": true,
+        "auto_delete": false,
+        "internal": false,
+        "arguments": {}
+      },
+      {
+        "name": "retry.user.out",
+        "vhost": "/",
+        "type": "topic",
+        "durable": true,
+        "auto_delete": false,
+        "internal": false,
+        "arguments": {}
+      }
+    ],
+    "queues": [
+      {
+        "name": "email.user.created",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,
+        "arguments": {}
+      },
+      {
+        "name": "email.user.deleted",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,
+        "arguments": {}
+      },
+      {
+        "name": "membership.user.created",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,
+        "arguments": {}
+      },
+      {
+        "name": "retry.user.wait1",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,
+        "arguments": {}
+      },
+      {
+        "name": "retry.user.wait2",
+        "vhost": "/",
+        "durable": true,
+        "auto_delete": false,
+        "arguments": {}
+      }
+    ],
+    "bindings": [
+      {
+        "source": "user",
+        "vhost": "/",
+        "destination": "email.user",
+        "destination_type": "queue",
+        "routing_key": "#.created",
+        "arguments": {}
+      },
+      {
+        "source": "user",
+        "vhost": "/",
+        "destination": "email.user",
+        "destination_type": "queue",
+        "routing_key": "#.deleted",
+        "arguments": {}
+      },
+      {
+        "source": "user",
+        "vhost": "/",
+        "destination": "membership.user",
+        "destination_type": "queue",
+        "routing_key": "#.created",
+        "arguments": {}
+      }
+    ]
+  }
